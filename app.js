@@ -1,9 +1,12 @@
 const apiKey = "06a8bc90ecdfec3b13370cc0ada7e76a";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=tehran";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 
-async function checkWeather() {
-    const response = await fetch(apiUrl + `&appid=${apiKey}`);
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     var data = await response.json();
 
     // console.log(data);
@@ -15,6 +18,9 @@ async function checkWeather() {
 }
 
 
+searchBtn.addEventListener("click", () => {
+    checkWeather(searchBox.value);
+})
 
 
-checkWeather();
+
