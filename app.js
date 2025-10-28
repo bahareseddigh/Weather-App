@@ -26,18 +26,27 @@ async function checkWeather(city) {
 
         if (data.weather[0].main == "Clouds") {
             weatherIcon.src = "./assets/images/clouds.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(45deg, #809bd9ff 0%, #b9ebd0ff 100%)";
         }
         else if (data.weather[0].main == "Clear") {
             weatherIcon.src = "./assets/images/clear.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(to right, #4facfe 0%, #05dde9ff 100%)";
         }
         else if (data.weather[0].main == "Rain") {
             weatherIcon.src = "./assets/images/rain.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(135deg, #0b3b6f 0%, #556b78 100%)";
         }
         else if (data.weather[0].main == "Drizzle") {
             weatherIcon.src = "./assets/images/drizzle.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(135deg, #525252 0%, #3d72b4 100%)";
         }
         else if (data.weather[0].main == "Mist") {
             weatherIcon.src = "./assets/images/mist.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(to right, #9ba5a7 0%, #d8e1e3 100%)";
+        }
+        else if (data.weather[0].main == "Snow") {
+            weatherIcon.src = "./assets/images/snow.png";
+            document.querySelector(".card").style.backgroundImage = "linear-gradient(135deg, #c7e1f9ff 0%, #aecee9ff 60%, #9bb7d8 100%)";
         }
 
 
@@ -51,7 +60,14 @@ async function checkWeather(city) {
 
 searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
+    searchBox.value = "";
 });
 
+searchBox.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        checkWeather(searchBox.value);
+        searchBox.value = "";
+    }
+});
 
 
